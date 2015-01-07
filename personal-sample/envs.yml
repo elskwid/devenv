@@ -1,0 +1,9 @@
+rubybox:
+  :box: "chef/ubuntu-14.04"
+  :memory: 2048
+  :cpus: 2
+  :ports: # example port forwarding
+    - :guest: 3000
+      :host: 3001
+    - :guest: 4200
+      :host: 4201

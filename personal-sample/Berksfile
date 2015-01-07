@@ -1,0 +1,7 @@
+source "https://api.berkshelf.com"
+
+cookbook "devenv",
+         path: "../cookbooks/devenv"
+
+cookbook "devenv-personal",
+         path: "./cookbooks/devenv-personal"

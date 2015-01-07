@@ -1,0 +1,8 @@
+{
+  "id"           : "sample",
+  "comment"      : "Sample User",
+  "groups"       : ["sudo"],
+  "create_group" : "true",
+  "ssh_keygen"   : "true",
+  "system_user"  : "true"
+}
