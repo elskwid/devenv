@@ -43,7 +43,7 @@ and keep both `devenv` and `devenv/personal` in version control.
 The Vagrantfile sets up the chef-solo provisioner to look at the top-level
 devenv cookbook, where some basic recipes are housed, and also to find
 cookbooks in your personal directory. Berkshelf is also configured to
-find it's settings in `personal\Berksfile`.
+find it's settings in `personal/Berksfile`.
 
 ### The rubybox sample
 
@@ -59,17 +59,17 @@ very much a work in progress. But here are the basics:
 To run, `devenv` requires a couple of things:
 
 * `personal` directory
-* `personal\envs.yml` file that lists out our environments
+* `personal/envs.yml` file that lists out our environments
 
 #### What a specific devenv needs
 
 For example, our **rubybox** environment needs:
 
-* `personal\envs.yml` entry that sets up the basics for the env
-* `personal\roles\rubyboxy.rb` chef role to be used when building the env
-* `personal\cookbooks\devenv-personal` chef cookbook that can be used during build
-* `personal\envs\rubybox` (Optional) dirs and folders to share with the env
-* `personal\shared` (Optional) dirs and folders to share with all envs
+* `personal/envs.yml` entry that sets up the basics for the env
+* `personal/roles/rubyboxy.rb` chef role to be used when building the env
+* `personal/cookbooks/devenv-personal` chef cookbook that can be used during build
+* `personal/envs/rubybox` (Optional) dirs and folders to share with the env
+* `personal/shared` (Optional) dirs and folders to share with all envs
 
 Take a look at the sample **rubybox** env for details.
 
