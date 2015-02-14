@@ -26,7 +26,11 @@ easy enough to make this configurable per-env.**
 
 ## Get started
 
-* Install Vagrant, Chef, and Virtualbox (see note above)
+* Install [Vagrant](https://www.vagrantup.com)
+* Install [Chef DK](https://downloads.chef.io/chef-dk/)
+* Install [Virtualbox](https://www.virtualbox.org) (see note above)
+* Install the [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) Vagrant plugin
+* Install the [vagrant-omnibus](https://github.com/chef/vagrant-omnibus) Vagrant plugin
 * Clone the repo
 * Copy `personal-sample` to `personal`
 * Run `vagrant status` from anywhere under the top directory
