@@ -67,7 +67,10 @@ very much a work in progress. But here are the basics:
 To run, `devenv` requires a couple of things:
 
 * `personal` directory
-* `personal/envs.yml` file that lists out our environments
+* environment definitions
+  - `personal/envs.yml` a single file that lists out our environments
+  - **AND/OR**
+  - `personal/envs/*.yml` individual files that define environments
 
 #### What a specific devenv needs
 

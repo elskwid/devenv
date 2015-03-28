@@ -1,5 +1,7 @@
 ## 0.1.1 unreleased
 
+* Add support for individual env definition files (elskwid)
+
 ## v0.1.0 2015-03-28
 
 * Update install instructions with better dependency descriptions (elskwid)
