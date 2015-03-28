@@ -17,6 +17,14 @@ Vagrant.configure("2") do |config|
       machine.vm.boot_timeout = 120
       machine.vm.box = env_def[:box]
       machine.vm.hostname = env_name
+
+      machine.vm.provider "vmware_fusion" do |vmx|
+        vmx.gui = false
+        vmx.name = env_name
+        vmx["memsize"] = env_def[:memory]
+        vmx["numvcpus"] = env_def[:cpus]
+      end
+
       machine.vm.provider "virtualbox" do |vbox|
         vbox.gui = false
         vbox.name = env_name
