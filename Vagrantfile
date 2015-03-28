@@ -1,8 +1,14 @@
 # devenv Vagrantfile
 require "yaml"
 vagrantfile_path = File.expand_path(File.dirname(__FILE__))
-env_definition_path = File.join(vagrantfile_path, "personal", "envs.yml")
-env_definitions = YAML.load_file(env_definition_path)
+# top-level env definitions
+envs_file = File.join(vagrantfile_path, "personal", "envs.yml")
+# individual env definitions
+env_files = Dir[File.join(vagrantfile_path, "personal", "envs", "*.yml")]
+
+env_definitions = ([envs_file] + env_files).reduce({}) do |hash, path|
+  hash.merge! YAML.load_file(path) if File.exist?(path)
+end
 
 Vagrant.configure("2") do |config|
   env_definitions.each do |env_name, env_def|
