@@ -5,6 +5,10 @@ Conventions for Vagrant + Chef development environments.
 `devenv` is mostly a single Vagrantfile that expects to find configuration
 files in specific locations.
 
+### A note on versions
+While in development I'll be using tags to "version" the project. See
+CHANGELOG.md for details in each release.
+
 ## Goal (WIP)
 
 The goal is to have all development environments consolidated in such a way
