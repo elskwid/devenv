@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provision :chef_solo do |chef|
         chef.log_level = "info"
         chef.synced_folder_type = "nfs"
-        chef.provisioning_path = "/tmp/vagrant-chef"
+        chef.provisioning_path = "/tmp/vagrant-chef-#{env_name}"
         chef.cookbooks_path = ["cookbooks", "personal/cookbooks"]
         chef.roles_path = ["personal/roles"]
         chef.json = { machine: { name: env_name }.merge(env_def) }
