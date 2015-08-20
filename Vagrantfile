@@ -80,6 +80,15 @@ Vagrant.configure("2") do |config|
         chef.json = { machine: { name: env_name }.merge(env_def) }
         chef.run_list = ["role[#{env_name}]"]
       end
+
+      # workaround bug in Vagrant for cached folders
+      # https://github.com/mitchellh/vagrant/issues/5199
+      machine.trigger.before [:reload, :up, :provision], stdout: true do
+        info "Cleaning up synced_folders for #{env_name}..."
+        %w(virtualbox vmware_fusion).each do |provider|
+          system "rm .vagrant/machines/#{env_name}/#{provider}/synced_folders"
+        end
+      end
     end # define machine
   end # ENV_DEFINITIONS
 
