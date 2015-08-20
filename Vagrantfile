@@ -18,27 +18,27 @@ Vagrant.configure("2") do |config|
       machine.vm.box = env_def[:box]
       machine.vm.hostname = env_name
 
-      machine.vm.provider "vmware_fusion" do |vmx|
-        vmx.gui = false
-        vmx.name = env_name
-        vmx["memsize"] = env_def[:memory]
-        vmx["numvcpus"] = env_def[:cpus]
+      machine.vm.provider "vmware_fusion" do |v|
+        v.gui = false
+        v.name = env_name
+        v.vmx["memsize"] = env_def[:memory]
+        v.vmx["numvcpus"] = env_def[:cpus]
       end
 
-      machine.vm.provider "virtualbox" do |vbox|
-        vbox.gui = false
-        vbox.name = env_name
-        vbox.memory = env_def[:memory]
-        vbox.cpus = env_def[:cpus]
+      machine.vm.provider "virtualbox" do |v|
+        v.gui = false
+        v.name = env_name
+        v.memory = env_def[:memory]
+        v.cpus = env_def[:cpus]
         # ensure time sync is on
-        vbox.customize [
+        v.customize [
           "setextradata",
           :id,
           "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled",
           "0"
         ]
         # set sync threshold
-        vbox.customize [
+        v.customize [
           "guestproperty",
           "set",
           :id,
