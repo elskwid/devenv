@@ -54,16 +54,53 @@ Vagrant.configure("2") do |config|
       machine.vm.network :private_network, type: "dhcp"
 
       # folders
-      [
-        [".", "/vagrant"],
-        ["./personal/shared", "/home/#{env_name}/shared"],
-        ["./personal/envs/#{env_name}", "/home/#{env_name}/env"]
-      ].each do |(host, guest)|
-        unless File.exist?(File.expand_path(File.join(vagrantfile_path, host)))
-          next puts "[DEVENV] skip nonexistent '#{host}'"
+      host_env_home = "./personal/envs/#{env_name}"
+      guest_env_home = "/home/#{env_name}"
+
+      # folders defined in env are relative to home
+      env_folders = Array(env_def[:folders]).map do |folder|
+        folder[:host] = File.join(host_env_home, folder[:host])
+        folder[:guest] = File.join(guest_env_home, folder[:guest])
+
+        folder
+      end
+
+      # default folders + fsnotify
+      # [host_path, guest_path, notify (true|false)]
+      default_folders = [
+        # default vagrant folder
+        {
+          host: ".",
+          guest: "/vagrant",
+          notify: false
+        },
+        # shared to all guests
+        {
+          host: "./personal/shared",
+          guest: "#{guest_env_home}/shared",
+          notify: false
+        },
+      ]
+
+      if env_folders.empty?
+        # share entire env if no folders are specified
+        default_folders << {
+          host: host_env_home,
+          guest: "#{guest_env_home}/env",
+          notify: false
+        }
+      end
+
+      (default_folders + env_folders).each do |folder|
+        unless File.exist?(File.expand_path(File.join(vagrantfile_path, folder[:host])))
+          next puts "[DEVENV] skip nonexistent host folder '#{folder[:host]}'"
         end
 
-        machine.vm.synced_folder host, guest, type: "nfs"
+        machine.vm.synced_folder folder[:host],
+                                 folder[:guest],
+                                 type: "nfs",
+                                 fsnotify: folder[:notify],
+                                 exclude: folder.fetch(:exclude, [])
       end
 
       # ports
