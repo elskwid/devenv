@@ -1,0 +1,17 @@
+otherbox:
+  :box: "chef/ubuntu-14.04"
+  :memory: 2048
+  :cpus: 2
+  :ports: # example port forwarding
+    - :guest: 3000
+      :host: 3001
+    - :guest: 4200
+      :host: 4201
+  :folders: # override default folder sharing
+    - :host: "otherbox-proj"
+      :guest: "otherbox-proj"
+      :notify: true # requires vagrant-fsnotify
+      :exclude: # don't notify for these folders/files
+        - ".git"
+        - "build"
+        - "tmp"
