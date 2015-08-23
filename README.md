@@ -25,16 +25,16 @@ environments to unify the interface to the VMs. And yes, each env is a
 separate VM. I'd like to work Docker into this plan at some point as well --
 ideas?
 
-**Note: All VMs are built with the Virtualbox provider, although it should be
-easy enough to make this configurable per-env.**
-
 ## Get started
 
 * Install [Vagrant](https://www.vagrantup.com)
 * Install [Chef DK](https://downloads.chef.io/chef-dk/)
-* Install [Virtualbox](https://www.virtualbox.org) (see note above)
+* Install a VM provider [Virtualbox](https://www.virtualbox.org) or [VM Ware](http://www.vmware.com)
+  - NOTE: for VM Ware install the [Vagrant VM Ware Provider](https://www.vagrantup.com/vmware)
 * Install the [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) Vagrant plugin
 * Install the [vagrant-omnibus](https://github.com/chef/vagrant-omnibus) Vagrant plugin
+* Install the [vagrant-triggers](https://github.com/emyl/vagrant-triggers) Vagrant plugin
+* (Optional) install the [vagrant-fsnotify](https://github.com/adrienkohlbecker/vagrant-fsnotify) Vagrant plugin
 * Clone the repo
 * Copy `personal-sample` to `personal`
 * Run `vagrant status` from anywhere under the top directory
@@ -59,6 +59,15 @@ In the `personal-sample` directory is a working configuration for a single
 devenv named **rubybox**. It illustrates the assumptions made by `devenv`
 when running.
 
+### The otherbox sample
+
+The otherbox env shows how to use an env file per environment - which helps
+quite a bit for organization. It also shows some of the advance configuration
+around foldering sharing and using `vagrant-fsnotify` to help with file change
+notifications from host to guest.
+
+### The basics
+
 I'm not going to go into too much detail since this entire operation is still
 very much a work in progress. But here are the basics:
 
@@ -82,7 +91,7 @@ For example, our **rubybox** environment needs:
 * `personal/envs/rubybox` (Optional) dirs and folders to share with the env
 * `personal/shared` (Optional) dirs and folders to share with all envs
 
-Take a look at the sample **rubybox** env for details.
+Take a look at the sample **rubybox** or **otherbox** env for details.
 
 Enjoy.
 
