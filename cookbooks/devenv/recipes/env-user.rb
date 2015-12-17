@@ -7,10 +7,9 @@ user_account machine_name do
   ssh_keygen false
 end
 
-group "sudo" do
-  action :modify
-  members machine_name
-  append true
+sudo machine_name do
+  user machine_name
+  nopasswd true
 end
 
 # TODO: spend some quality time with ssh and decide how we want to do things

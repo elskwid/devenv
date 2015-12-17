@@ -1,12 +1,17 @@
-include_recipe "apt"
-include_recipe "build-essential"
+case node["platform_family"]
+when "debian"
+  include_recipe "apt"
+  include_recipe "build-essential"
+when "rhel"
+  include_recipe "yum"
+  package "sudo.x86_64"
+end
+
 include_recipe "timezone"
 
-# Make sure vagrant user is in sudo group
-group "sudo" do
-  action :modify
-  members "vagrant"
-  append true
+sudo "vagrant" do
+  user "vagrant"
+  nopasswd true
 end
 
 package "git-core"
