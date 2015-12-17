@@ -87,7 +87,7 @@ Vagrant.configure("2") do |config|
         default_folders << {
           host: host_env_home,
           guest: "#{guest_env_home}/env",
-          notify: false
+          notify: true
         }
       end
 
