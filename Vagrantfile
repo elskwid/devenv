@@ -13,7 +13,7 @@ end
 Vagrant.configure("2") do |config|
   env_definitions.each do |env_name, env_def|
     # machine
-    config.vm.define env_name do |machine|
+    config.vm.define env_name, autostart: false do |machine|
       machine.vm.boot_timeout = 120
       machine.vm.box = env_def[:box]
       machine.vm.hostname = env_name
