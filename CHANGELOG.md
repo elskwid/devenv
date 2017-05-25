@@ -1,5 +1,8 @@
 ## 0.1.1 unreleased
 
+* Update dependencies (elskwid)
+* Configure Chef client version in Vagrantfile (elskwid)
+* Update Vagrant machine so as to not autostart (elskwid)
 * Allow for more granular shared folders (elskwid)
 * Use per env chef provisioning path (elskwid)
 * Add workaround for cached shared folders [requires vagrant-triggers plugin] (elskwid)
