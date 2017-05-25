@@ -130,7 +130,7 @@ Vagrant.configure("2") do |config|
   end # ENV_DEFINITIONS
 
   # provisioning
-  config.omnibus.chef_version = :latest
+  config.omnibus.chef_version = "12.19.36" # track the chef-dk client version
   config.berkshelf.enabled = true
   config.berkshelf.berksfile_path = "personal/Berksfile"
 end
